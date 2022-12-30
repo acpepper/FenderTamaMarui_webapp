@@ -27,8 +27,11 @@ let distanceTracker = [];
 function gridCheck() {
     downbeat = new Date();
     distance = downbeat.getTime() - (t0.getTime() + (500 * counter));
+    console.log(counter)
     console.log(distance);
     distanceTracker.push(distance);
+
+// this updates the counter on first call of function but never again. Why?
     counter += 1;
     console.log(counter)
     console.log(distanceTracker);
