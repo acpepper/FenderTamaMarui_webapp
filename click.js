@@ -30,8 +30,14 @@ function gridCheck() {
     console.log(distance);
     distanceTracker.push(distance);
     counter += 1;
+    console.log(counter)
     console.log(distanceTracker);
-    audio.play();
+    if (counter = 1){
+        audio.play()
+    }
+    else if (counter >= 10){
+        audio.pause()
+    }
 }
 
 // take last 10 and check accuracy
@@ -39,7 +45,6 @@ function calculation(){
     lastTen = distanceTracker.slice(-10);
     console.log(lastTen);
     sum = 0;
-    cntr += 1;
     lastTenDistance = [];
     distanceSum = 0;
     for (let i = 1; i < 10; i++){
@@ -50,7 +55,7 @@ function calculation(){
     mean = distanceSum / 10;
     standardDev = distanceSum;
     console.log(mean);
-    console.log(standardDev);
+    console.log(standardDev);  
 }
 
 // function updateButton() {
