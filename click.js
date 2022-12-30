@@ -8,6 +8,9 @@ cntr = 0
 t_start = new Date()
 t_end = null
 
+var audio = new Audio('throwOneUp.mp3');
+console.log(audio)
+
 let btnValue = 0
 
 // first button sets initial time
@@ -24,6 +27,7 @@ grid()
 counter = 0
 
 let distanceTracker = []
+
 
 
 function gridCheck() {
@@ -43,6 +47,7 @@ function calculation(){
     lastTen = distanceTracker.slice(-10)
     console.log(lastTen)
     sum = 0
+    cntr += 1
     lastTenDistance = []
     distanceSum = 0
     for (let i = 1; i < 10; i++){
@@ -78,3 +83,12 @@ function updateButton() {
 }
 
 
+
+
+while (counter = 0){
+    
+}
+
+while (counter !=0){
+    audio.play()
+}
