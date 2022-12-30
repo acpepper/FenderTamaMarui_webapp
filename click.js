@@ -2,27 +2,34 @@ const button = document.querySelector('input');
 const paragraph = document.querySelector('p');
 
 document.addEventListener("keydown", (event) => {
-    if (event.isComposing || event.keyCode === 32) {
+    if ((event.isComposing || event.keyCode === 32) && testStarted) {
         calculation();
         gridCheck();
     }
 });
-// button.addEventListener('click', updateButton);
-cntr = 0
-t_start = new Date()
-t_end = null
-var audio = new Audio('throwOneUp.mp3');
-let btnValue = 0
-
-// first button sets initial time
-function grid(){
-    t0 = new Date();
-}
-grid();
-
+document.addEventListener("click", startTester);
+audio = new Audio('throwOneUp.mp3');
+testStarted = false;
+t0 = null;
 // create a grid in time
 counter = 0;
 let distanceTracker = [];
+
+// first button sets initial time
+function startTester() {
+    t0 = new Date();
+    testStarted = !testStarted;
+    if (testStarted) {
+        button.setAttribute('value', "Running ...");
+        audio.play();
+    }
+    else {
+        button.setAttribute('value', "stopped");
+        audio.pause();
+        audio.currentTime = 0;
+    }
+
+}
 
 function gridCheck() {
     downbeat = new Date();
@@ -31,7 +38,6 @@ function gridCheck() {
     distanceTracker.push(distance);
     counter += 1;
     console.log(distanceTracker);
-    audio.play();
 }
 
 // take last 10 and check accuracy
@@ -39,7 +45,6 @@ function calculation(){
     lastTen = distanceTracker.slice(-10);
     console.log(lastTen);
     sum = 0;
-    cntr += 1;
     lastTenDistance = [];
     distanceSum = 0;
     for (let i = 1; i < 10; i++){
