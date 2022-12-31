@@ -18,6 +18,7 @@ function startTester() {
         button.setAttribute('value', "stopped");
         audio.pause();
         audio.currentTime = 0;
+        counter = 0;
     }
 }
 
