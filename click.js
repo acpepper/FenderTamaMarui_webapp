@@ -26,7 +26,6 @@ function gridCheck() {
     downbeat = new Date();
     distance = downbeat.getTime() - (t0.getTime() + (500 * counter));
     distanceTracker.push(distance);
-    console.log(distanceTracker);
 }
 
 // take last 10 and check accuracy
@@ -35,13 +34,18 @@ function calculation(){
     sum = 0;
     lastTenDistance = [];
     distanceSum = 0;
-    for (let i = 1; i < 10; i++){
-        d = lastTen[i] - lastTen[i-1];
+    for (let i = 1; i < 10; i++) {
+        d = Math.abs(lastTen[i] - lastTen[i-1]);
         lastTenDistance.push(d);
         distanceSum += d;
     }
     mean = distanceSum / 10;
-    standardDev = distanceSum;
+    standardDev = 0;
+    for (let i = 0; i < 9; i++) {
+        standardDev += Math.pow(lastTenDistance[i] - mean, 2);
+    }
+    standardDev = Math.sqrt(standardDev/10);
+    console.log(lastTen)
     console.log(mean);
     console.log(standardDev);
     console.log(counter);
