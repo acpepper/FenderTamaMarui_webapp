@@ -5,6 +5,7 @@ document.addEventListener("keydown", (event) => {
     if (event.isComposing || event.keyCode === 32) {
         calculation();
         gridCheck();
+        counterIncrement();
     }
 });
 // button.addEventListener('click', updateButton);
@@ -13,6 +14,9 @@ t_start = new Date()
 t_end = null
 var audio = new Audio('throwOneUp.mp3');
 let btnValue = 0
+counter = 0;
+let distanceTracker = [];
+
 
 // first button sets initial time
 function grid(){
@@ -20,20 +24,19 @@ function grid(){
 }
 grid();
 
-// create a grid in time
-counter = 0;
-let distanceTracker = [];
+
+function counterIncrement(){
+    counter = counter + 1
+}
+
 
 function gridCheck() {
     downbeat = new Date();
+    console.log(counter);
     distance = downbeat.getTime() - (t0.getTime() + (500 * counter));
     console.log(counter)
     console.log(distance);
     distanceTracker.push(distance);
-
-// this updates the counter on first call of function but never again. Why?
-    counter += 1;
-    console.log(counter)
     console.log(distanceTracker);
     if (counter = 1){
         audio.play()
