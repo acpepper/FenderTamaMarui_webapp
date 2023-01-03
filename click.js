@@ -7,6 +7,8 @@ t0 = null;
 counter = 0;
 let distanceTracker = [];
 let absDistanceTracker = [];
+let graphData = [];
+
 
 function startTester() {
     t0 = new Date();
@@ -40,32 +42,32 @@ function gridCheck() {
     absDistanceTracker.push(absDistance);
 }
 
-// take last 10 and check accuracy
+// take last 20 and check accuracy
 function calculation(){
-    lastTen = distanceTracker.slice(-10);
+    lastTen = distanceTracker.slice(-20);
     sum = 0;
-    lastTenDistance = [];
+    lastTwentyDistance = [];
     distanceSum = 0;
-    for (let i = 1; i < 10; i++) {
+    for (let i = 1; i < 20; i++) {
         d = Math.abs(lastTen[i] - lastTen[i-1]);
-        lastTenDistance.push(d);
+        lastTwentyDistance.push(d);
         distanceSum += d;
     }
-    mean = distanceSum / 10;
+    mean = distanceSum / 20;
     standardDev = 0;
-    for (let i = 0; i < 9; i++) {
-        standardDev += Math.pow(lastTenDistance[i] - mean, 2);
+    for (let i = 0; i < 19; i++) {
+        standardDev += Math.pow(lastTwentyDistance[i] - mean, 2);
     }
-
-    lastTenAbs = absDistanceTracker.slice(-10);
-
-    endingDistance = lastTenAbs[0] - lastTenAbs[9] + 4500; 
-    standardDev = Math.sqrt(standardDev/10);
+    lastTwentyAbs = absDistanceTracker.slice(-20);
+    graphData.push(0);
+    endingDistance = lastTwentyAbs[0] - lastTwentyAbs[19] + 9500; 
+    standardDev = Math.sqrt(standardDev/20);
     console.log(lastTen);
     console.log(mean);
     console.log(standardDev);
     console.log(counter);
     console.log(endingDistance);
+    console.log(graphData);
 }
 
 
@@ -73,7 +75,7 @@ function calculation(){
 
 document.addEventListener("keydown", (event) => {
     if ((event.isComposing || event.keyCode === 68) && testStarted) {
-        if (counter >= 10) calculation();
+        if (counter >= 20) calculation();
         gridCheck();
         warmup();
     }
